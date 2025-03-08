@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 
-namespace GameEngine {
+namespace Hara {
 
     void Engine::run() {
         if (!init())
@@ -20,4 +20,4 @@ namespace GameEngine {
     }
 
     void Engine::cleanup() {}
-}  // namespace GameEngine
+}  // namespace Hara

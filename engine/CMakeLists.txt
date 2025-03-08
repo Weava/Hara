@@ -18,6 +18,7 @@ set( GLFW_BUILD_DOCS OFF CACHE BOOL  "GLFW lib only" )
 set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
 set( GLAD_GL "" )
 
+
 add_subdirectory("vendor/glfw")
 
 include_directories("${GLFW_SOURCE_DIR}/deps")
@@ -34,12 +35,13 @@ if(PLATFORM_WINDOWS)
 else()
 endif()
 
-list(APPEND SOURCE_FILES src/Main.cpp)
+list(APPEND SOURCE_FILES src/Hara.h)
 
-add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${GLAD_GL})
+add_library(${PROJECT_NAME} SHARED src/core/Application.cpp)
 
 target_link_libraries(${PROJECT_NAME} ${OPEN_GL_LIBRARIES} glfw)
 
+set_target_properties(HaraEngine PROPERTIES LINKER_LANGUAGE CXX)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 target_compile_definitions(${PROJECT_NAME} PUBLIC ${COMPILE_DEPS} PUBLIC PROJECT_DIR="${PROJECT_SOURCE_DIR}")
 target_include_directories(${PROJECT_NAME} PUBLIC ${EXTRA_LIBS})

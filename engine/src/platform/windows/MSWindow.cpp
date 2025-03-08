@@ -49,8 +49,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action,
         glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-namespace GameEngine {
-
+namespace Hara {
     class MSWindow : public Window {
        public:
         int showWindow() {
@@ -140,4 +139,4 @@ namespace GameEngine {
             exit(EXIT_SUCCESS);
         }
     };
-}  // namespace GameEngine
+}  // namespace Hara

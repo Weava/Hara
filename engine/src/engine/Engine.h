@@ -1,7 +1,7 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-namespace GameEngine {
+namespace Hara {
     class Engine {
        public:
         void run();
@@ -14,5 +14,5 @@ namespace GameEngine {
        private:
         bool isRunning = true;
     };
-}  // namespace GameEngine
+}  // namespace Hara
 #endif

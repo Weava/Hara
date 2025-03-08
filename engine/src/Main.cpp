@@ -6,10 +6,11 @@
 
 #include <iostream>
 
+#include "Hara.h"
 #include "engine/Engine.h"
 #include "platform/windows/MSWindow.cpp"
 
-using namespace GameEngine;
+using namespace Hara;
 
 int main() {
     // Engine::Engine engine;
