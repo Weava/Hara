@@ -1,5 +1,6 @@
 engine/CMakeFiles
-engine/.vscode
+/.vscode
+/build
 engine/build
 Makefile
 cmake_install.cmake

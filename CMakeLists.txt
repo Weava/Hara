@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 3.31.6)
+cmake_minimum_required(VERSION 3.31.5)
 
 project(Hara)
 
-add_subdirectory(HaraEngine)
+include_directories(engine)
+add_subdirectory(engine)
