@@ -14,8 +14,6 @@ namespace Hara {
 
     void Application::run() {
         Window* window = new MSWindow();
-        auto logger = Hara::Log::getCoreLogger();
-        logger->warn("Test");
         window->showWindow();
     }
 }  // namespace Hara
