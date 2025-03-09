@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Hara.h"
 
 class Stage : public Hara::Application {
