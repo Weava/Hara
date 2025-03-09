@@ -10,4 +10,6 @@ namespace Hara {
 
         void run();
     };
+
+    Application* createApplication();
 }  // namespace Hara

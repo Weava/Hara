@@ -8,6 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 project(HaraEngine)
 
 find_package(OpenGL REQUIRED)
+find_package(spdlog REQUIRED)
 
 include_directories(${OPENGL_INCLUDE_DIRS})
 
@@ -20,9 +21,12 @@ set( GLAD_GL "" )
 
 
 add_subdirectory("vendor/glfw")
+add_subdirectory("vendor/spdlog")
 
 include_directories("${GLFW_SOURCE_DIR}/deps")
 set( GLAD_GL "${GLFW_SOURCE_DIR}/deps/glad/gl.h" )
+
+include_directories("vendor/spdlog")
 
 if( MSVC )
     SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
@@ -35,11 +39,14 @@ if(PLATFORM_WINDOWS)
 else()
 endif()
 
+
+
 list(APPEND SOURCE_FILES src/Hara.h)
 
 add_library(${PROJECT_NAME} SHARED src/core/Application.cpp)
 
-target_link_libraries(${PROJECT_NAME} ${OPEN_GL_LIBRARIES} glfw)
+target_link_libraries(${PROJECT_NAME} ${OPEN_GL_LIBRARIES} PRIVATE glfw)
+target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog_header_only)
 
 set_target_properties(HaraEngine PROPERTIES LINKER_LANGUAGE CXX)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})

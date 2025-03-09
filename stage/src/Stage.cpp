@@ -6,8 +6,4 @@ class Stage : public Hara::Application {
     ~Stage() {}
 };
 
-int main() {
-    Stage* stage = new Stage();
-    stage->run();
-    delete stage;
-};
+Hara::Application* Hara::createApplication() { return new Stage(); }
