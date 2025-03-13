@@ -1,5 +1,6 @@
-# GameEngine (I don't have a name yet)
+# Hara Engine
 
+#### A small game engine project basing off of the Cherno's Hazel engine
 
 ## How to use
 
