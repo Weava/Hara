@@ -1,6 +1,6 @@
-[submodule "engine/vendor/glfw"]
-	path = engine/vendor/glfw
-	url = https://github.com/glfw/glfw.git
-[submodule "engine/vendor/spdlog"]
-	path = engine/vendor/spdlog
+[submodule "haraEngine/vendor/spdlog"]
+	path = haraEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "haraEngine/vendor/glfw"]
+	path = haraEngine/vendor/glfw
+	url = https://github.com/glfw/glfw.git
