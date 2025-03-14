@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31.5)
+cmake_minimum_required(VERSION 3.30.5)
 
 set(HARA_PLATFORM_WINDOWS TRUE)
 set(HARA_BUILD_DLL TRUE)
