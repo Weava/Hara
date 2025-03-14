@@ -4,7 +4,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-
 project(HaraEngine)
 
 find_package(OpenGL REQUIRED)
@@ -43,6 +42,8 @@ endif()
 list(APPEND SOURCE_FILES src/Hara.h)
 
 add_library(${PROJECT_NAME} SHARED src/core/Application.cpp src/core/Log.cpp)
+
+target_precompile_headers(${PROJECT_NAME} PRIVATE src/hpch.h)
 
 target_link_libraries(${PROJECT_NAME} ${OPEN_GL_LIBRARIES} PRIVATE glfw)
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog)
