@@ -4,6 +4,8 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+add_definitions( -DHARA_BUILD_DLL=${HARA_BUILD_DLL} )
+
 project(HaraEngine)
 
 find_package(OpenGL REQUIRED)
@@ -17,16 +19,12 @@ set( GLFW_BUILD_DOCS OFF CACHE BOOL  "GLFW lib only" )
 set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
 set( GLAD_GL "" )
 
-
 add_subdirectory("vendor/glfw")
-add_subdirectory("vendor/spdlog")
 
 include_directories("${GLFW_SOURCE_DIR}/deps")
 set( GLAD_GL "${GLFW_SOURCE_DIR}/deps/glad/gl.h" )
 
-include_directories("vendor/spdlog/include/spdlog")
-
-list(APPEND SOURCE_FILES src/core/Application.cpp src/core/Log.cpp)
+list(APPEND SOURCE_FILES src/core/Application.cpp src/core/Log.cpp src/core/Layer.cpp src/core/LayerStack.cpp)
 
 if( MSVC )
     SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
@@ -39,8 +37,6 @@ if(PLATFORM_WINDOWS)
     list(APPEND SOURCE_FILES src/platform/windows/MSWindow.cpp)
 else()
 endif()
-
-
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 

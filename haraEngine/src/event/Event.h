@@ -43,9 +43,8 @@ namespace Hara {
     virtual int getCategoryFlags() const override { return category; }
 
     class HARA_API Event {
-        friend class EventDispatcher;
-
        public:
+        bool isHandled = false;
         virtual EventType getEventType() const = 0;
         virtual const char* getName() const = 0;
         virtual int getCategoryFlags() const = 0;
@@ -53,9 +52,6 @@ namespace Hara {
         inline bool isInCategory(EventCategory category) {
             return getCategoryFlags() & category;
         }
-
-       protected:
-        bool isHandled = false;
     };
 
     class EventDispatcher {

@@ -4,7 +4,7 @@
 
 namespace Hara {
 
-    class WindowResizeEvent : public Event {
+    class HARA_API WindowResizeEvent : public Event {
        public:
         WindowResizeEvent(unsigned int width, unsigned int height)
             : width(width), height(height) {}

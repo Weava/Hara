@@ -19,8 +19,17 @@ namespace Hara {
 
     void Application::run() {
         while (isRunning) {
+            for (Layer* layer : layerStack) {
+                layer->onUpdate();
+            }
             window->onUpdate();
         }
+    }
+
+    void Application::pushLayer(Layer* layer) { layerStack.pushLayer(layer); }
+
+    void Application::pushOverlay(Layer* layer) {
+        layerStack.pushOverlay(layer);
     }
 
     bool Application::onWindowClose(WindowCloseEvent closeEvent) {
@@ -32,6 +41,13 @@ namespace Hara {
         EventDispatcher dispatcher(e);
         dispatcher.dispatch<WindowCloseEvent>(BIND_EVENT_FN(onWindowClose));
         CORE_LOG_INFO(e.toString());
+
+        for (auto it = layerStack.end(); it != layerStack.begin();) {
+            (*--it)->onEvent(e);
+            if (e.isHandled) {
+                break;
+            }
+        }
     }
 
 }  // namespace Hara

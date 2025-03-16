@@ -2,7 +2,11 @@ cmake_minimum_required(VERSION 3.30.5)
 
 project(Stage)
 
+include_directories("../vendor/spdlog/include")
+
 add_executable(${PROJECT_NAME} src/Stage.cpp)
+
+target_include_directories(${PROJECT_NAME} PRIVATE "../vendor/spdlog/include")
 
 target_link_libraries(${PROJECT_NAME} PRIVATE HaraEngine)
 target_include_directories(${PROJECT_NAME} PRIVATE "../haraEngine/src")
