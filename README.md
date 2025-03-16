@@ -10,9 +10,15 @@
 
 2. If you don't have Visual Studio installed, you can install the [latest version](https://visualstudio.microsoft.com/downloads/). If you prefer to use a non Visual Studio IDE to build you can simply install the [Visual Studio build tools](https://aka.ms/vs/17/release/vs_BuildTools.exe)
 
-3. From any command line run `scripts/windows/BuildProject.bat`. You must specify either `Debug`, `Release` or `Dist` as an argument.
+3. Make sure to install the Git submodules 
+```
+git submodules init
+git submodules update
+```
 
-4. If everything is good, the program should build and start on its own. At this point you should have solution files to use for Visual Studio.
+4. From any command line run `scripts/windows/BuildProject.bat`. You must specify either `Debug`, `Release` or `Dist` as an argument.
+
+5. If everything is good, the program should build and start on its own. At this point you should have solution files to use for Visual Studio.
 
 #### Visual Studio 
 
