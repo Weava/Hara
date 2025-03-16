@@ -26,6 +26,8 @@ set( GLAD_GL "${GLFW_SOURCE_DIR}/deps/glad/gl.h" )
 
 include_directories("vendor/spdlog/include/spdlog")
 
+list(APPEND SOURCE_FILES src/core/Application.cpp src/core/Log.cpp)
+
 if( MSVC )
     SET( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup" )
 endif()
@@ -34,14 +36,13 @@ option(PLATFORM_WINDOWS "Build for windows?" ON)
 
 if(PLATFORM_WINDOWS)
     list(APPEND COMPILE_DEFINITIONS "PLATFORM_WINDOWS")
+    list(APPEND SOURCE_FILES src/platform/windows/MSWindow.cpp)
 else()
 endif()
 
 
 
-list(APPEND SOURCE_FILES src/Hara.h)
-
-add_library(${PROJECT_NAME} SHARED src/core/Application.cpp src/core/Log.cpp)
+add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE src/hpch.h)
 
