@@ -13,6 +13,7 @@ namespace Hara {
         virtual void onAttach() {}
         virtual void onDetach() {}
         virtual void onUpdate() {}
+        virtual void preUpdate() {}
         virtual void onEvent(Event& event) {}
 
         inline const std::string& getName() const { return debugName; }

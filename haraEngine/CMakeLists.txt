@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.30.5)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(ImGui_DIR "vendor/imgui/lib/cmake")
+
+list(APPEND CMAKE_PREFIX_PATH ${ImGui_DIR})
 
 add_definitions( -DHARA_BUILD_DLL=${HARA_BUILD_DLL} )
 
@@ -21,6 +24,7 @@ set( GLAD_GL "" )
 
 add_subdirectory("vendor/glfw")
 add_subdirectory("vendor/spdlog")
+add_subdirectory("vendor/imgui")
 
 include_directories("${GLFW_SOURCE_DIR}/deps")
 set( GLAD_GL "${GLFW_SOURCE_DIR}/deps/glad/gl.h" )
@@ -39,27 +43,14 @@ if(PLATFORM_WINDOWS)
 else()
 endif()
 
-list(APPEND IMGUI_SRC vendor/imgui/imgui.h 
-    vendor/imgui/imgui.cpp 
-    vendor/imgui/imgui_draw.cpp
-    vendor/imgui/imgui_demo.cpp
-    vendor/imgui/backends/imgui_impl_opengl3.h 
-    vendor/imgui/backends/imgui_impl_opengl3.cpp 
-    vendor/imgui/backends/imgui_impl_opengl3_loader.h
-    vendor/imgui/backends/imgui_impl_glfw.h
-    vendor/imgui/backends/imgui_impl_glfw.cpp
-    )
-
-add_library(IMGUI STATIC ${IMGUI_SRC})
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES})
-
-target_include_directories(${PROJECT_NAME} PRIVATE vendor/imgui)
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE src/hpch.h)
 
 target_link_libraries(${PROJECT_NAME} ${OPEN_GL_LIBRARIES} PRIVATE glfw)
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog)
-target_link_libraries(${PROJECT_NAME} PUBLIC IMGUI)
+target_link_libraries(${PROJECT_NAME} PRIVATE imgui)
+target_link_libraries(imgui PRIVATE glfw )
 
 set_target_properties(HaraEngine PROPERTIES LINKER_LANGUAGE CXX)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})

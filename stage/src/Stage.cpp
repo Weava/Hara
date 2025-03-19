@@ -1,3 +1,5 @@
+
+
 #include "Hara.h"
 
 class ExampleLayer : public Hara::Layer {
@@ -13,10 +15,7 @@ class ExampleLayer : public Hara::Layer {
 
 class Stage : public Hara::Application {
    public:
-    Stage() {
-        pushLayer(new ExampleLayer());
-        pushOverlay(new Hara::GuiLayer());
-    }
+    Stage() { pushLayer(new Hara::GuiLayer()); }
     ~Stage() {}
 };
 

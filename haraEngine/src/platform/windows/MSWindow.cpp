@@ -169,9 +169,12 @@ namespace Hara {
         });
     }
 
-    void MSWindow::onUpdate() {
+    void MSWindow::preUpdate() {
         glClearColor(1, 0, 1, 1);
         glClear(GL_COLOR_BUFFER_BIT);
+    }
+
+    void MSWindow::onUpdate() {
         glfwPollEvents();
         glfwSwapBuffers(window);
     }

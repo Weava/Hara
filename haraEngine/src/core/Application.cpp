@@ -1,8 +1,6 @@
 #include "Application.h"
 
-#include <GLFW/glfw3.h>
-#include <imgui.h>
-
+#include "../../vendor/imgui/imgui.h"
 #include "../event/ApplicationEvent.h"
 #include "../event/Event.h"
 #include "Log.h"
@@ -20,6 +18,7 @@ namespace Hara {
 
     void Application::run() {
         while (isRunning) {
+            window->preUpdate();
             for (Layer* layer : layerStack) {
                 layer->onUpdate();
             }
@@ -27,7 +26,10 @@ namespace Hara {
         }
     }
 
-    void Application::pushLayer(Layer* layer) { layerStack.pushLayer(layer); }
+    void Application::pushLayer(Layer* layer) {
+        layerStack.pushLayer(layer);
+        layer->onAttach();
+    }
 
     void Application::pushOverlay(Layer* layer) {
         layerStack.pushOverlay(layer);

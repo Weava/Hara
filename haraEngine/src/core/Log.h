@@ -7,17 +7,16 @@
 
 namespace Hara {
 
-    class Log {
+    class HARA_API Log {
        public:
-        HARA_API static void init();
+        static void init();
 
-        inline static HARA_API std::shared_ptr<spdlog::logger>&
-        getCoreLogger() {
+        inline static std::shared_ptr<spdlog::logger>& getCoreLogger() {
             return coreLogger;
         };
 
        private:
-        static HARA_API std::shared_ptr<spdlog::logger> coreLogger;
+        static std::shared_ptr<spdlog::logger> coreLogger;
     };
 }  // namespace Hara
 

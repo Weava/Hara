@@ -19,6 +19,7 @@ namespace Hara {
         using EventCallbackFn = std::function<void(Event&)>;
         virtual ~Window() {}
 
+        virtual void preUpdate() = 0;
         virtual void onUpdate() = 0;
 
         virtual void setEventCallback(const EventCallbackFn& callback) = 0;

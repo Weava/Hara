@@ -11,6 +11,7 @@ namespace Hara {
         virtual ~MSWindow();
 
         void onUpdate() override;
+        void preUpdate() override;
         void setVSync(bool enabled) override;
         bool isVSyncEnabled() const override;
 
