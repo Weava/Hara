@@ -1,6 +1,7 @@
 #include "Application.h"
 
 #include <GLFW/glfw3.h>
+#include <imgui.h>
 
 #include "../event/ApplicationEvent.h"
 #include "../event/Event.h"
@@ -30,6 +31,7 @@ namespace Hara {
 
     void Application::pushOverlay(Layer* layer) {
         layerStack.pushOverlay(layer);
+        layer->onAttach();
     }
 
     bool Application::onWindowClose(WindowCloseEvent closeEvent) {

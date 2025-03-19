@@ -13,7 +13,10 @@ class ExampleLayer : public Hara::Layer {
 
 class Stage : public Hara::Application {
    public:
-    Stage() { pushLayer(new ExampleLayer()); }
+    Stage() {
+        pushLayer(new ExampleLayer());
+        pushOverlay(new Hara::GuiLayer());
+    }
     ~Stage() {}
 };
 
